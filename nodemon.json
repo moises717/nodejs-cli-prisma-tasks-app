@@ -1,0 +1,14 @@
+{
+  
+  "ext": "js, json, ts",
+  "stdin": false,
+    "ignore": [
+      "src/*/.spec.ts",
+      "typescript",
+      "node_modules"
+    ],
+    "events": {
+      "start": "cls || clear"
+    }
+
+  }
