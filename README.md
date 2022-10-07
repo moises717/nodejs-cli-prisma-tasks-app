@@ -2,9 +2,13 @@
 
 Sample node cli tasks app
 
+install
 `yarn or npm install`
+
 Generate a build app
+
 `yarn build`
+
 Run app
 `yarn start`
 
