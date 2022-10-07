@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "sourceMap": true,
-        "module": "NodeNext",
+        "module": "Node16",
         "baseUrl": ".",
         "outDir": "dist",
         "importHelpers": true,

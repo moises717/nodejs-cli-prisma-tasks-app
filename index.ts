@@ -1,8 +1,15 @@
 import loading from 'loading-cli';
 
 import 'colors';
-import { crearTarea, listarTareas } from './tasks/tasks';
-import { displayMenu, pausa, readInput } from './displayMenu/displayMenu';
+import {
+	checkCompleted,
+	crearTarea,
+	getPendingTasks,
+	listarTareas,
+	removeTask,
+	removeTaskFromDb,
+} from './tasks/tasks.js';
+import { displayMenu, pausa, readInput } from './displayMenu/displayMenu.js';
 
 async function main() {
 	let Option;
@@ -14,16 +21,21 @@ async function main() {
 			case 1:
 				const { title } = await readInput({ message: 'Enter task title:', nameInput: 'title' });
 				let loader = loading('Entering task'.blue).start();
-
 				await crearTarea(title);
-
 				loader.succeed('task created!!'.green);
 				loader.stop();
-
 				break;
 			case 2:
 				let tasks = await listarTareas();
-				console.log(tasks);
+				await checkCompleted(tasks.listOpt);
+				break;
+			case 3:
+				let ptasks = await getPendingTasks();
+				await checkCompleted(ptasks.listOpt);
+				break;
+			case 4:
+				let taskToDeleted = await removeTask();
+				await removeTaskFromDb(taskToDeleted.listOpt);
 				break;
 		}
 		await pausa();

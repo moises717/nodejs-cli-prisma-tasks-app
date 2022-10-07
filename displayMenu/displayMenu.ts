@@ -15,11 +15,15 @@ const listsMenu: QuestionCollection = [
 			},
 			{
 				value: 3,
-				name: `${'3.'.green} Borrar tarea`,
+				name: `${'3.'.green} Listar tareas pendientes`,
+			},
+			{
+				value: 4,
+				name: `${'4.'.green} Borrar tareas`,
 			},
 			{
 				value: 0,
-				name: `${'4.'.green} Salir`,
+				name: `${'5.'.green} Salir`,
 			},
 		],
 	},
