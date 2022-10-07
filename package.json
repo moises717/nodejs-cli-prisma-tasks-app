@@ -1,5 +1,5 @@
 {
-  "name": "prisma-sample-application",
+  "name": "nodejs-prisma-cli-task-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "nodemon index.ts",
-    "start": "tsc && node dist/index"
+    "start": "node dist/index",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,7 @@
     "@prisma/client": "^4.4.0",
     "colors": "^1.4.0",
     "inquirer": "^9.1.2",
+    "loading-cli": "^1.1.0",
     "uuid": "^9.0.0"
   }
 }
