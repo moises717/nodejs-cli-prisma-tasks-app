@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
         "sourceMap": true,
-        "module": "Node16",
+        "module": "NodeNext",
+        "baseUrl": ".",
         "outDir": "dist",
-        "resolveJsonModule": true,
         "importHelpers": true,
         "strict": true,
         "lib": ["ESNext"],

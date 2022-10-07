@@ -1,8 +1,8 @@
-import inquirer, { QuestionCollection } from 'inquirer';
 import loading from 'loading-cli';
 
 import 'colors';
-import { crearTarea, listarTareas } from './tasks/tasks.js';
+import { crearTarea, listarTareas } from './tasks/tasks';
+import { displayMenu, pausa, readInput } from './displayMenu/displayMenu';
 
 async function main() {
 	let Option;
@@ -28,71 +28,6 @@ async function main() {
 		}
 		await pausa();
 	} while (Option !== 0);
-}
-
-const listsMenu: QuestionCollection = [
-	{
-		type: 'list',
-		name: 'Option',
-		choices: [
-			{
-				value: 1,
-				name: `${'1.'.green} Crear tarea`,
-			},
-			{
-				value: 2,
-				name: `${'2.'.green} Listar tareas`,
-			},
-			{
-				value: 3,
-				name: `${'3.'.green} Borrar tarea`,
-			},
-			{
-				value: 0,
-				name: `${'4.'.green} Salir`,
-			},
-		],
-	},
-];
-
-async function displayMenu() {
-	console.clear();
-	console.log('=========================='.green);
-	console.log('  Select an option'.white);
-	console.log('==========================\n'.green);
-
-	const { Option } = await inquirer.prompt(listsMenu);
-
-	return Option;
-}
-
-const pausa = async () => {
-	const question = [
-		{
-			type: 'input',
-			name: 'enter',
-			message: `Presione ${'enter'.green} para continuar`,
-		},
-	];
-
-	console.log('\n');
-	await inquirer.prompt(question);
-};
-
-async function readInput({ message, nameInput }: { message: string; nameInput: string }) {
-	return await inquirer.prompt([
-		{
-			type: 'input',
-			name: nameInput,
-			message,
-			validate(value) {
-				if (value.length === 0) {
-					return 'Por favor ingrese un valor';
-				}
-				return true;
-			},
-		},
-	]);
 }
 
 main();
