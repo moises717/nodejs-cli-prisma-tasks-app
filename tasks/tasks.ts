@@ -1,5 +1,5 @@
 import { PrismaClient, Tasks } from '@prisma/client';
-import inquirer, { Answers, ChoiceBase, ChoiceOptions, ListChoiceOptions } from 'inquirer';
+import inquirer, { ListChoiceOptions } from 'inquirer';
 import { v4 as uuidv4 } from 'uuid';
 import loading from 'loading-cli';
 import { ListenOptions } from 'net';
@@ -88,7 +88,11 @@ export async function removeTask() {
 
 export async function removeTaskFromDb(taskIds: string[]): Promise<Tasks[] | undefined> {
 	let loaderList = loading('Deleting tasks...'.blue).start();
-	if (taskIds.length <= 0) return;
+	if (taskIds.length <= 0) {
+		loaderList.info('0 task selected');
+		loaderList.stop();
+		return;
+	}
 	let task = await Promise.all(
 		taskIds.map(async id => {
 			return await prisma.tasks.delete({
@@ -104,7 +108,11 @@ export async function removeTaskFromDb(taskIds: string[]): Promise<Tasks[] | und
 
 export async function checkCompleted(taskIds: string[]): Promise<Tasks[] | undefined> {
 	let loaderList = loading('Checking tasks...'.blue).start();
-	if (taskIds.length <= 0) return;
+	if (taskIds.length <= 0) {
+		loaderList.info('0 task selected');
+		loaderList.stop();
+		return;
+	}
 	let task = await Promise.all(
 		taskIds.map(async id => {
 			return await prisma.tasks.update({

@@ -10,6 +10,9 @@ import {
 	removeTaskFromDb,
 } from './tasks/tasks.js';
 import { displayMenu, pausa, readInput } from './displayMenu/displayMenu.js';
+import { PrismaClient } from '@prisma/client';
+
+let prisma = new PrismaClient();
 
 async function main() {
 	let Option;
@@ -40,6 +43,9 @@ async function main() {
 		}
 		await pausa();
 	} while (Option !== 0);
+	{
+		prisma.$disconnect();
+	}
 }
 
 main();
