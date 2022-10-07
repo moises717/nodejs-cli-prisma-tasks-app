@@ -2,7 +2,6 @@ import { PrismaClient, Tasks } from '@prisma/client';
 import inquirer, { ListChoiceOptions } from 'inquirer';
 import { v4 as uuidv4 } from 'uuid';
 import loading from 'loading-cli';
-import { ListenOptions } from 'net';
 
 const prisma = new PrismaClient();
 
